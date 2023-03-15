@@ -21,9 +21,14 @@ IMAGE_PATH = os.path.join(dir_of_interest, "images", "heart2.jpg")
 DATA_PATH = os.path.join(dir_of_interest, "data", "heart_cleaned.csv")
 df = pd.read_csv(DATA_PATH)
 
+col1,col2=st.columns(2)
+fig_1 = px.pie(df, names='Heart Disease', hole=0.5, title='Heart Disease Absence and Presence Pie Chart')
+col1.plotly_chart(fig_1)
+
 data_info = st.radio(':blue[Click to view the Visualization of the Dataset]:',
                       ('Age Group', 'Sex', 'Chest Pain Level','Excercise Induced Angina', 'SlopeC', 'Thalassemia Level'),
                       horizontal=True)
+
 
 
 if data_info == 'Age Group':
