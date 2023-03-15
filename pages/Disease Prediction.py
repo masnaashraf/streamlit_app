@@ -3,6 +3,11 @@ import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 import os
 
+
+st.title(":red[Heart Disease Predictor]")
+
+#df= pd.read_csv("heart_numerical1.csv")
+
 # absolute path to this file
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 # absolute path to this file's root directory
@@ -11,11 +16,9 @@ PARENT_DIR = os.path.join(FILE_DIR, os.pardir)
 dir_of_interest = os.path.join(PARENT_DIR, "resources")
 
 
-DATA_PATH = os.path.join(dir_of_interest, "data", "heart_numerical.csv")
 
-st.title(":red[Heart Disease Predictor]")
-
-df= pd.read_csv(DATA_PATH)
+DATA_PATH = os.path.join(dir_of_interest, "data", "heart_numerical1.csv")
+df = pd.read_csv(DATA_PATH)
 
 # creating function to convert numerical to categorical data
 
@@ -28,7 +31,7 @@ df.rename(columns={'Chest Pain Level':'Chest_Pain_Level', 'Resting Blood Pressur
 st.write(":blue[Provide values and predict your chance of heart disease]")
 
 st.header("User input:")
-
+cpl_val=0
 def user_input():
     Age= st.number_input('Enter your Age',min_value=0)
 
@@ -42,6 +45,7 @@ def user_input():
     
     Chest_Pain_Level=st.radio("Select  Chest Pain Level ",('Stable Value','Unstable Value' ,'Microvascular Value','Variant'))
     #1: typical angina, Value 2: atypical angina, Value 3: non-anginal pain, Value 4: asymptomatic
+    global cpl_val
     if Chest_Pain_Level=="Stable Value":
         cpl_val=1
     elif Sex=="Unstable Value":
