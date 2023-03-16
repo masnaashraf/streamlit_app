@@ -152,8 +152,17 @@ classifierNB = GaussianNB()
 classifierNB.fit(X, Y)
 y_res=classifierNB.predict(df_userinput)
 r=y_res[0]
-if r==1:
-    st.subheader("HEART DISEASE DETECTED")
-elif r==0:
-    st.subheader("HEART DISEASE NOT DETECTED")
 
+
+
+def make_prediction(input):
+    if r==1:
+        prediction_text="HEART DISEASE DETECTED"
+    elif r==0:
+        prediction_text="HEART DISEASE NOT DETECTED"
+    return prediction_text
+
+
+if st.button("Predict"):
+    prediction = make_prediction(r)
+    st.write(prediction)
